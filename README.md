@@ -11,6 +11,8 @@
 
 An original, full-featured and responsive streaming platform inspired by Netflix. Designed, developed, and crafted by **Dayle Cortes**. Built with premium technologies for high-quality streaming, seamless authentication, personalized profiles, and a delightful user experience.
 
+</div>
+
 ---
 
 ## 📑 Table of Contents
@@ -34,8 +36,6 @@ An original, full-featured and responsive streaming platform inspired by Netflix
 🚀 [Deployment](#deployment)
 
 📌 [Note](#note)
-
-</div>
 
 ---
 
