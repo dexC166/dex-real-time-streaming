@@ -1,3 +1,10 @@
+<div align="center">
+  <br />
+    <a href="https://dex-real-time-streaming.vercel.app/" target="_blank">
+      <img src="./public/images/Project Banner.png" alt="Project Banner" style="border-radius: 12px; box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);">
+    </a>
+  <br />
+
 # Dex-Real-Time-Streaming 📽️
 
 An original, full-featured and responsive streaming platform inspired by Netflix. Designed, developed, and crafted by **Dayle Cortes**. Built with premium technologies for high-quality streaming, seamless authentication, personalized profiles, and a delightful user experience.
@@ -6,16 +13,27 @@ An original, full-featured and responsive streaming platform inspired by Netflix
 
 ## 📑 Table of Contents
 
-- 📌 [About This Project](#about-this-project)
-- 🛠️ [Tech Stack](#tech-stack)
-- 📚 [docs](#docs)
-- 🚀 [Quick Start](#quick-start)
-- 🧩 [Key Features](#key-features)
-- 🗂️ [Folder Structures](#folder-structures)
-- 📖 [My Learning Journey](#my-learning-journey)
-- 📜 [License](#license)
-- 🚀 [Deployment](#deployment)
-- 📌 [Note](#note)
+📌 [About This Project](#about-this-project)
+
+🛠️ [Tech Stack](#tech-stack)
+
+📚 [docs](#docs)
+
+🚀 [Quick Start](#quick-start)
+
+🧩 [Key Features](#key-features)
+
+🗂️ [Folder Structures](#folder-structures)
+
+📖 [My Learning Journey](#my-learning-journey)
+
+📜 [License](#license)
+
+🚀 [Deployment](#deployment)
+
+📌 [Note](#note)
+
+</div>
 
 ---
 
