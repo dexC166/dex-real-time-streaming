@@ -1,9 +1,11 @@
 <div align="center">
   <br />
     <a href="https://dex-real-time-streaming.vercel.app/" target="_blank">
-      <img src="./public/images/Project Banner.png" alt="Project Banner" style="border-radius: 12px; box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);">
+      <kbd><img src="./public/images/project-banner.png" alt="Project Banner"></kbd>
     </a>
   <br />
+
+---
 
 # Dex-Real-Time-Streaming 📽️
 
