@@ -9,7 +9,7 @@ Dex-Real-Time-Streaming is built from the ground up to be robust, maintainable, 
 ## 📑 Table of Contents
 
 - 🔑 [Key Principles](#key-principles)
-- 📦 [System Overview](#sytstem-overview)
+- 🌿 [System Overview](#system-overview)
 - 🚀 [Deployment, Security, and Maintainability](#deployment-security-maintainability)
 - 🤔 [Why This Architecture?](#why-this-architecture)
 

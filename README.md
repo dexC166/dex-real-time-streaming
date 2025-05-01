@@ -13,10 +13,9 @@ An original, full-featured and responsive streaming platform inspired by Netflix
 - 🧩 [Key Features](#key-features)
 - 🗂️ [Folder Structures](#folder-structures)
 - 📖 [My Learning Journey](#my-learning-journey)
-- 🚢 [Deployment](#deployment)
 - 📜 [License](#license)
-- 🙏 [Acknowledgements](#acknowledgements)
-- 📌 [Deployment](#note)
+- 🚀 [Deployment](#deployment)
+- 📌 [Note](#note)
 
 ---
 
@@ -159,7 +158,7 @@ npm run dev
 
 ---
 
-<a name="folder-structure"></a>
+<a name="folder-structures"></a>
 
 ## 🗂️ Folder Structure
 
@@ -222,7 +221,7 @@ This project isn’t a straight copy, it’s an **evolution**! Inspiration came 
 
 <a name="deployment"></a>
 
-## 🚢 Deployment
+## 🚀 Deployment
 
 **Deployed & production-ready via Vercel:**
 
@@ -235,9 +234,9 @@ _(Any platform supporting Next.js 14 works; Vercel simply makes it seamless.)_
 
 ---
 
-## 📜 License
-
 <a name="license"></a>
+
+## 📜 License
 
 All code and design proudly created and maintained by **Dex**.  
 © 2025 Dex. All rights reserved.
