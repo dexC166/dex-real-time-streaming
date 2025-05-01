@@ -9,8 +9,8 @@ Dex-Real-Time-Streaming is built from the ground up to be robust, maintainable, 
 ## 📑 Table of Contents
 
 - 🔑 [Key Principles](#key-principles)
-- 📦 [Architectural Overview](#architectural-overview)
-- 🚀 [Deployment, Security, and Maintainability](#deployment-security-maintability)
+- 📦 [System Overview](#sytstem-overview)
+- 🚀 [Deployment, Security, and Maintainability](#deployment-security-maintainability)
 - 🤔 [Why This Architecture?](#why-this-architecture)
 
 ---
@@ -28,11 +28,18 @@ Dex-Real-Time-Streaming is built from the ground up to be robust, maintainable, 
 
 ---
 
-<a name="architectural-overview"></a>
+<a name="system-overview"></a>
 
-### 🏗️ Architectural Overview
+### 🌿 System Overview
 
-## <img src="./public/images/diagrams/architecture-overview.png"  alt="User Flow Diagram" width="1500"/>
+## <img src="./public/images/diagrams/architecture-overview.png"  alt="User architecture Diagram" width="1500"/>
+
+**Other flows:**
+
+- Vercel (CI/CD) wraps/builds/hosts Next.js
+- Environment variables (secrets) injected everywhere needed
+
+---
 
 - **Frontend**: Built with React (via Next.js) and powered by TypeScript, for a highly interactive, performant user experience. The UI follows top streaming conventions while being uniquely modernized with my own component abstractions and layout optimizations.
 - **Styling**: Tailwind CSS enables rapid prototyping and pixel-perfect designs that work across devices, following design tokens and utility-first standards.

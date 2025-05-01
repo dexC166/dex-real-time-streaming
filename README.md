@@ -4,12 +4,32 @@ An original, full-featured and responsive streaming platform inspired by Netflix
 
 ---
 
+## 📑 Table of Contents
+
+- 📌 [About This Project](#about-this-project)
+- 🛠️ [Tech Stack](#tech-stack)
+- 📚 [docs](#docs)
+- 🚀 [Quick Start](#quick-start)
+- 🧩 [Key Features](#key-features)
+- 🗂️ [Folder Structures](#folder-structures)
+- 📖 [My Learning Journey](#my-learning-journey)
+- 🚢 [Deployment](#deployment)
+- 📜 [License](#license)
+- 🙏 [Acknowledgements](#acknowledgements)
+- 📌 [Deployment](#note)
+
+---
+
+<a name="about-this-project"></a>
+
 ## 📌 About This Project
 
 **Dex-Real-Time-Streaming** is my own comprehensive streaming app, featuring modern movie browsing, secure user authentication, intuitive UI, and personalized features.  
 Motivated by Netflix’s industry-leading design and fueled by expertise gained through Antonio Erdeljac (“codewithantonio”) YouTube tutorials, this project is a testament to my growth as a full-stack JavaScript/TypeScript developer. Every feature and visual flourish is a result of hands-on learning and intentional customization.
 
 ---
+
+<a name="tech-stack"></a>
 
 ## 🛠️ Tech Stack
 
@@ -74,6 +94,17 @@ Motivated by Netflix’s industry-leading design and fueled by expertise gained 
 
 ---
 
+<a name="docs"></a>
+
+## 📚 Docs
+
+- 🛠️ [Architecture Overview](./architecture.md)
+- 🔄 [User Flow Diagram](./flowchart.md)
+
+---
+
+<a name="quick-start"></a>
+
 ## 🚀 Quick Start
 
 ### 1. Requirements
@@ -111,6 +142,8 @@ npm run dev
 
 ---
 
+<a name="key-features"></a>
+
 ## 🧩 Key Features
 
 | Feature                   | Purpose                                                                                       |
@@ -125,6 +158,8 @@ npm run dev
 | 🚧 **Protected Routes**   | Access control throughout the app                                                             |
 
 ---
+
+<a name="folder-structure"></a>
 
 ## 🗂️ Folder Structure
 
@@ -169,6 +204,8 @@ README.md             # Project overview and usage guide (You are here!)
 
 ---
 
+<a name="my-learning-journey"></a>
+
 ## 📖 My Learning Journey
 
 I dove deeply into:
@@ -182,6 +219,8 @@ I dove deeply into:
 This project isn’t a straight copy, it’s an **evolution**! Inspiration came from Antonio Erdeljac’s (“codewithantonio”) YouTube content, whose lessons turbocharged my skills and confidence. Fully understanding every file now, and reflects my own touch and problem solving.
 
 ---
+
+<a name="deployment"></a>
 
 ## 🚢 Deployment
 
@@ -198,10 +237,14 @@ _(Any platform supporting Next.js 14 works; Vercel simply makes it seamless.)_
 
 ## 📜 License
 
+<a name="license"></a>
+
 All code and design proudly created and maintained by **Dex**.  
 © 2025 Dex. All rights reserved.
 
 ---
+
+<a name="acknowledgements"></a>
 
 ## 🙏 Acknowledgments
 
@@ -211,6 +254,8 @@ This README marks my full ownership over **“Dex Real-Time-Streaming.”**
 If you have questions, improvements, or want to discuss streaming development, feel free to reach out!
 
 ---
+
+<a name="note"></a>
 
 ## 📌 Note
 
