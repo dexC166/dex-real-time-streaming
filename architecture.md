@@ -77,3 +77,7 @@ I understand the architecture end-to-end, and chose each tool or technique speci
 - Long-term maintainability (strong typing, modular file structure, API abstraction)
 
 ---
+
+For micro-level user-flow, please refer to [flowchart.md](./flowchart.md).
+
+---
