@@ -1,7 +1,7 @@
-import React from "react";
-import useMovie from "@/hooks/useMovie";
-import { useRouter } from "next/router";
-import { AiOutlineArrowLeft } from "react-icons/ai";
+import React from 'react';
+import useMovie from '@/hooks/useMovie';
+import { useRouter } from 'next/router';
+import { AiOutlineArrowLeft } from 'react-icons/ai';
 
 const Watch = () => {
   const router = useRouter();
@@ -28,7 +28,7 @@ const Watch = () => {
     bg-opacity-70"
       >
         <AiOutlineArrowLeft
-          onClick={() => router.push("/")}
+          onClick={() => router.push('/')}
           className="
         text-white
         cursor-pointer"

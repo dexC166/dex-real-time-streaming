@@ -1,15 +1,15 @@
-import { getSession } from "next-auth/react";
-import { GetServerSidePropsContext } from "next";
-import { useRouter } from "next/router";
-import { useState } from "react";
-import { FaAngleRight } from "react-icons/fa";
+import { getSession } from 'next-auth/react';
+import { GetServerSidePropsContext } from 'next';
+import { useRouter } from 'next/router';
+import { useState } from 'react';
+import { FaAngleRight } from 'react-icons/fa';
 
 export async function getServerSideProps(context: GetServerSidePropsContext) {
   const session = await getSession(context);
   if (session) {
     return {
       redirect: {
-        destination: "/browse",
+        destination: '/browse',
         permanent: false,
       },
     };
@@ -18,7 +18,7 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
 }
 
 export default function LandingPage() {
-  const [email, setEmail] = useState("");
+  const [email, setEmail] = useState('');
   const router = useRouter();
 
   const handleGetStarted = () => {
@@ -30,7 +30,7 @@ export default function LandingPage() {
       {/* HERO SECTION - occupies 70vh */}
       <div
         className="w-full relative bg-[url('/images/hero.png')] bg-cover bg-center"
-        style={{ height: "70vh" }}
+        style={{ height: '70vh' }}
       >
         {/* Dark overlay - increased opacity */}
         <div className="absolute inset-0 bg-black bg-opacity-60" />
@@ -45,7 +45,7 @@ export default function LandingPage() {
               className="w-32 md:w-44"
             />
             <button
-              onClick={() => router.push("/auth?variant=login")}
+              onClick={() => router.push('/auth?variant=login')}
               className="bg-red-600 text-white px-6 py-2 rounded hover:bg-red-700 text-sm font-medium"
             >
               Sign In

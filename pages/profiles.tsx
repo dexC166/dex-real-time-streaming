@@ -1,7 +1,7 @@
-import { NextPageContext } from "next";
-import { getSession } from "next-auth/react";
-import { useRouter } from "next/router";
-import useCurrentUser from "@/hooks/useCurrentUser";
+import { NextPageContext } from 'next';
+import { getSession } from 'next-auth/react';
+import { useRouter } from 'next/router';
+import useCurrentUser from '@/hooks/useCurrentUser';
 
 export async function getServerSideProps(context: NextPageContext) {
   const session = await getSession(context);
@@ -9,7 +9,7 @@ export async function getServerSideProps(context: NextPageContext) {
   if (!session) {
     return {
       redirect: {
-        destination: "/auth",
+        destination: '/auth',
         permanent: false,
       },
     };
@@ -33,7 +33,7 @@ const Profiles = () => {
         <div className="flex items-center justify-center gap-8 mt-10">
           <div
             onClick={() => {
-              router.push("/");
+              router.push('/');
             }}
           >
             <div className="group flex-row w-44 mx-auto">

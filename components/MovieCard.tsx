@@ -1,9 +1,9 @@
-import React, { useState, useCallback } from "react";
-import { useRouter } from "next/router";
-import FavoriteButton from "@/components/FavoriteButton";
-import useInfoModalStore from "@/hooks/useInfoModal";
-import { BiChevronDown } from "react-icons/bi";
-import { BsFillPlayFill } from "react-icons/bs";
+import React, { useState, useCallback } from 'react';
+import { useRouter } from 'next/router';
+import FavoriteButton from '@/components/FavoriteButton';
+import useInfoModalStore from '@/hooks/useInfoModal';
+import { BiChevronDown } from 'react-icons/bi';
+import { BsFillPlayFill } from 'react-icons/bs';
 
 interface MovieCardProps {
   data: Record<string, any>;
@@ -47,7 +47,7 @@ const MovieCard: React.FC<MovieCardProps> = ({ data }) => {
           delay-300
           w-full
           h-full
-          ${isMobileExpanded ? "sm:opacity-100 opacity-0" : "opacity-100"}
+          ${isMobileExpanded ? 'sm:opacity-100 opacity-0' : 'opacity-100'}
         `}
       />
       <div
@@ -69,8 +69,8 @@ const MovieCard: React.FC<MovieCardProps> = ({ data }) => {
           sm:group-hover:visible
           ${
             isMobileExpanded
-              ? "opacity-100 scale-110 -translate-y-[6vw] translate-x-[2vw] visible"
-              : "opacity-0 scale-0 invisible"
+              ? 'opacity-100 scale-110 -translate-y-[6vw] translate-x-[2vw] visible'
+              : 'opacity-0 scale-0 invisible'
           }
         `}
       >

@@ -1,8 +1,8 @@
-import useBillboard from "@/hooks/useBillboard";
-import React, { useCallback, useEffect, useState } from "react";
-import { AiOutlineInfoCircle } from "react-icons/ai";
-import PlayButton from "./PlayButton";
-import useInfoModal from "@/hooks/useInfoModal";
+import useBillboard from '@/hooks/useBillboard';
+import React, { useCallback, useEffect, useState } from 'react';
+import { AiOutlineInfoCircle } from 'react-icons/ai';
+import PlayButton from './PlayButton';
+import useInfoModal from '@/hooks/useInfoModal';
 
 const Billboard = () => {
   const { data } = useBillboard();
@@ -19,10 +19,10 @@ const Billboard = () => {
     checkMobile();
 
     // Add event listener for resize
-    window.addEventListener("resize", checkMobile);
+    window.addEventListener('resize', checkMobile);
 
     // Cleanup
-    return () => window.removeEventListener("resize", checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
   }, []);
 
   const handleOpenModal = useCallback(() => {
@@ -39,7 +39,7 @@ const Billboard = () => {
           object-cover
           transform 
           brightness-[60%]
-          ${isMobile ? "scale-[1.4]" : "scale-[1.4]"}
+          ${isMobile ? 'scale-[1.4]' : 'scale-[1.4]'}
         `}
         autoPlay
         muted

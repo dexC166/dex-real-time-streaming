@@ -1,8 +1,8 @@
-import React, { useCallback, useEffect, useState } from "react";
-import { BsChevronDown, BsSearch, BsBell } from "react-icons/bs";
-import NavbarItem from "./NavbarItem";
-import MobileMenu from "./MobileMenu";
-import AccountMenu from "./AccountMenu";
+import React, { useCallback, useEffect, useState } from 'react';
+import { BsChevronDown, BsSearch, BsBell } from 'react-icons/bs';
+import NavbarItem from './NavbarItem';
+import MobileMenu from './MobileMenu';
+import AccountMenu from './AccountMenu';
 
 const TOP_OFFSET = 66;
 
@@ -20,10 +20,10 @@ const Navbar = () => {
       }
     };
 
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener('scroll', handleScroll);
 
     return () => {
-      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener('scroll', handleScroll);
     };
   }, []);
 
@@ -47,7 +47,7 @@ const Navbar = () => {
     items-center
     transition
     duration-500
-    ${showBackground ? "bg-zinc- bg-opacity-90" : ""}
+    ${showBackground ? 'bg-zinc- bg-opacity-90' : ''}
     `}
       >
         <img className="h-4 lg:h-7" src="/images/logo.png" alt="Logo" />
@@ -73,7 +73,7 @@ const Navbar = () => {
           <p className="text-white text-sm">Browse</p>
           <BsChevronDown
             className={`text-white transition ${
-              showMobileMenu ? "rotate-180" : "rotate-0"
+              showMobileMenu ? 'rotate-180' : 'rotate-0'
             }`}
           />
           <MobileMenu visible={showMobileMenu} />
@@ -95,7 +95,7 @@ const Navbar = () => {
             </div>
             <BsChevronDown
               className={`text-white transition ${
-                showAccountMenu ? "rotate-180" : "rotate-0"
+                showAccountMenu ? 'rotate-180' : 'rotate-0'
               }`}
             />
             <AccountMenu visible={showAccountMenu} />
