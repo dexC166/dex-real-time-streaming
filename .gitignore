@@ -4,8 +4,17 @@
 /node_modules
 /.pnp
 .pnp.js
+.yarn/install-state.gz
+
+# bun
+bun.lockb
+
+# pnpm
+pnpm-lock.yaml
+.pnpm-store/
 
 # testing
+/coverage
 
 # next.js
 /.next/
@@ -22,8 +31,10 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+pnpm-debug.log*
 
-# Local en files
+# local env files
+.env*.local
 .env
 
 # vercel
@@ -32,3 +43,11 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# VS Code editor
+.vscode
+.vscode/
+
+# Cursor editor
+.cursor
+.cursor/

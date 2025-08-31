@@ -44,7 +44,7 @@ An original, full-featured and responsive streaming platform inspired by Netflix
 ## 📌 About This Project
 
 **Dex-Real-Time-Streaming** is my own comprehensive streaming app, featuring modern movie browsing, secure user authentication, intuitive UI, and personalized features.  
-Motivated by Netflix’s industry-leading design and fueled by expertise gained through Antonio Erdeljac (“codewithantonio”) YouTube tutorials, this project is a testament to my growth as a full-stack JavaScript/TypeScript developer. Every feature and visual flourish is a result of hands-on learning and intentional customization.
+Motivated by industry-leading streaming platform design and fueled by expertise gained through Antonio Erdeljac ("codewithantonio") YouTube tutorials, this project is a testament to my growth as a full-stack JavaScript/TypeScript developer. Every feature and visual flourish is a result of hands-on learning and intentional customization.
 
 ---
 
@@ -52,17 +52,18 @@ Motivated by Netflix’s industry-leading design and fueled by expertise gained 
 
 ## 🛠️ Tech Stack
 
-| Layer / Purpose        | Technology                                      | Why                                                         |
-| ---------------------- | ----------------------------------------------- | ----------------------------------------------------------- |
-| **Frontend**           | Next.js 14 (App Router) + TypeScript + React 18 | For scalable, server-rendered and modern React development  |
-| **Styling**            | Tailwind CSS                                    | To achieve a consistent, beautiful, utility-first UI        |
-| **Authentication**     | NextAuth.js                                     | For secure, robust auth flows (credentials, Google, GitHub) |
-| **Database**           | MongoDB + Prisma ORM                            | Flexible, scalable, and developer-friendly                  |
-| **State Management**   | SWR (server data) & Zustand (local state)       | Fast, reliable state patterns                               |
-| **Storage / CDN**      | Cloudinary                                      | Easy, performant file & image uploads                       |
-| **Forms / Validation** | React-Hook-Form                                 | Lightweight, extensible form handling                       |
-| **Notifications**      | react-hot-toast                                 | User-friendly success/error toasts                          |
-| **Deployment**         | Vercel                                          | Effortless CI/CD and serverless delivery                    |
+| Layer / Purpose      | Technology                                          | Why                                                         |
+| -------------------- | --------------------------------------------------- | ----------------------------------------------------------- |
+| **Frontend**         | Next.js 13.5 (Pages Router) + TypeScript + React 18 | For scalable, server-rendered and modern React development  |
+| **Styling**          | Tailwind CSS                                        | To achieve a consistent, beautiful, utility-first UI        |
+| **Authentication**   | NextAuth.js                                         | For secure, robust auth flows (credentials, Google, GitHub) |
+| **Database**         | MongoDB + Prisma ORM                                | Flexible, scalable, and developer-friendly                  |
+| **State Management** | SWR (server data) & Zustand (local state)           | Fast, reliable state patterns                               |
+| **HTTP Client**      | Axios                                               | Reliable HTTP requests with interceptors                    |
+| **Utilities**        | Lodash                                              | JavaScript utility functions for data manipulation          |
+| **Security**         | bcrypt                                              | Secure password hashing                                     |
+| **Icons**            | React Icons                                         | Comprehensive icon library                                  |
+| **Deployment**       | Vercel                                              | Effortless CI/CD and serverless delivery                    |
 
 ---
 
@@ -137,13 +138,19 @@ Motivated by Netflix’s industry-leading design and fueled by expertise gained 
 Create a `.env` file in your project root and add:
 
 ```env
-DATABASE_URL=
-NEXTAUTH_JWT_SECRET=
-NEXTAUTH_SECRET=
+# Mongodb Atlas db
+DATABASE_URL="mongodb+srv://<username>:<password>@cluster0.z9tbmpr.mongodb.net/test"
 
+# Auth
+NEXTAUTH_JWT_SECRET="NEXT-JWT-SECRET"
+NEXTAUTH_SECRET="NEXTAUTH_SECRET"
+NEXTAUTH_URL=https://appName.vercel.app
+
+# Github Authentication
 GITHUB_ID=
 GITHUB_SECRET=
 
+# Google Authentication
 GOOGLE_CLIENT_ID=
 GOOGLE_CLIENT_SECRET=
 ```
@@ -230,12 +237,14 @@ README.md             # Project overview and usage guide (You are here!)
 I dove deeply into:
 
 - **Custom Hooks**: `useBillboard`, `useMovieList`, `useFavorites`, `useInfoModal`
-- **Secure API Design**: Next.js App Router + API routes
+- **Secure API Design**: Next.js Pages Router + API routes
 - **Advanced Auth Flows**: NextAuth.js with JWT
 - **State Management**: SWR for server data & Zustand for local UI state
-- **Responsive, Netflix-esque UI**: Tailwind CSS best practices
+- **Responsive, modern streaming UI**: Tailwind CSS best practices
+- **Database Integration**: Prisma ORM with MongoDB for scalable data management
+- **HTTP Client Patterns**: Axios for reliable API communication
 
-This project isn’t a straight copy, it’s an **evolution**! Inspiration came from Antonio Erdeljac’s (“codewithantonio”) YouTube content, whose lessons turbocharged my skills and confidence. Fully understanding every file now, and reflects my own touch and problem solving.
+This project isn't a straight copy, it's an **evolution**! Inspiration came from Antonio Erdeljac's ("codewithantonio") YouTube content, whose lessons turbocharged my skills and confidence. Fully understanding every file now, and reflects my own touch and problem solving.
 
 ---
 
@@ -247,10 +256,10 @@ This project isn’t a straight copy, it’s an **evolution**! Inspiration came 
 
 1. Push your repo to GitHub
 2. Link it in the Vercel dashboard
-3. Add your `.env` variables in Vercel’s settings
+3. Add your `.env` variables in Vercel's settings
 4. Deploy instantly!
 
-_(Any platform supporting Next.js 14 works; Vercel simply makes it seamless.)_
+_(Any platform supporting Next.js 13.5 works; Vercel simply makes it seamless.)_
 
 ---
 
@@ -269,7 +278,7 @@ All code and design proudly created and maintained by **Dex**.
 
 Special thanks to **Antonio Erdeljac**, your real-world tutorials and code galore have been a phenomenal resource and inspiration. Every lesson built my confidence to innovate and expand.
 
-This README marks my full ownership over **“Dex Real-Time-Streaming.”**  
+This README marks my full ownership over **"Dex Real-Time-Streaming."**  
 If you have questions, improvements, or want to discuss streaming development, feel free to reach out!
 
 ---
@@ -278,7 +287,7 @@ If you have questions, improvements, or want to discuss streaming development, f
 
 ## 📌 Note
 
-This app was originally built by following @codewithantonio’s YouTube tutorial for learning and inspiration.  
-The project was developed entirely in my local IDE (outside of GitHub) without initializing git, and I’ve reconstructed the commit history solely to reflect a realistic development flow and demonstrate my understanding of fullstack architecture and recent modifications, not as a record of the actual chronological build.
+This app was originally built by following @codewithantonio's YouTube tutorial for learning and inspiration.  
+The project was developed entirely in my local IDE (outside of GitHub) without initializing git, and I've reconstructed the commit history solely to reflect a realistic development flow and demonstrate my understanding of fullstack architecture and recent modifications, not as a record of the actual chronological build.
 
 ---

@@ -31,7 +31,7 @@ const AccountMenu: React.FC<AccountMenuProps> = ({ visible }) => {
           onClick={() => signOut()}
           className="px-3 text-center text-white text-sm hover:underline"
         >
-          Sign Out of Netflix
+          Sign Out of Dex-Streaming
         </div>
       </div>
     </div>

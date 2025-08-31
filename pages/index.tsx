@@ -40,8 +40,8 @@ export default function LandingPage() {
           {/* Header with Logo & Sign In */}
           <div className="w-full flex items-center justify-between pt-6">
             <img
-              src="/images/netflix-logo.png"
-              alt="Netflix"
+              src="/images/logo.png"
+              alt="Dex-Streaming"
               className="w-32 md:w-44"
             />
             <button
@@ -145,7 +145,7 @@ export default function LandingPage() {
             <div className="md:w-1/2 flex justify-center">
               <div className="relative max-w-md">
                 <img
-                  src="/images/stranger-things-lg.png"
+                  src="/images/stranger-things-lg.jpg"
                   alt="Stranger Things phone"
                   className="w-full h-auto"
                 />
