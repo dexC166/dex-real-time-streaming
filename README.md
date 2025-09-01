@@ -1,7 +1,7 @@
 <div align="center">
   <br />
-    <a href="https://dex-real-time-streaming.vercel.app/" target="_blank">
-      <kbd><img src="./public/images/project-banner.png" alt="Project Banner"></kbd>
+    <a href="https://dex-streaming.vercel.app/" target="_blank">
+      <kbd><img src="./public/images/project-banner.jpg" alt="Project Banner"></kbd>
     </a>
   <br />
 
