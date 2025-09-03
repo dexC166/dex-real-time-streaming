@@ -1,17 +1,15 @@
-import bcrypt from "bcrypt";
-import { NextApiRequest, NextApiResponse } from "next";
-import prismadb from "@/lib/prismadb";
+import bcrypt from 'bcrypt';
+import { NextApiRequest, NextApiResponse } from 'next';
+import prismadb from '@/lib/prismadb';
 
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
   try {
-    if (req.method !== "POST") {
+    if (req.method !== 'POST') {
       return res.status(405).end();
     }
-
-    console.log("REQUEST BODY:", req.body); // 👈 Add this line
 
     const { email, name, password } = req.body;
 
@@ -22,7 +20,7 @@ export default async function handler(
     });
 
     if (existingUser) {
-      return res.status(422).json({ error: "Email taken" });
+      return res.status(422).json({ error: 'Email taken' });
     }
 
     const hashedPassword = await bcrypt.hash(password, 12);
@@ -32,14 +30,13 @@ export default async function handler(
         email,
         name,
         hashedPassword,
-        image: "",
+        image: '',
         emailVerified: new Date(),
       },
     });
 
     return res.status(200).json(user);
   } catch (error) {
-    console.log(error);
     return res.status(400).json({ error: `Something went wrong ${error}` });
   }
 }

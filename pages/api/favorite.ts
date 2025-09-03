@@ -1,14 +1,14 @@
-import { NextApiRequest, NextApiResponse } from "next";
-import { without } from "lodash";
-import prismadb from "@/lib/prismadb";
-import serverAuth from "@/lib/serverAuth";
+import { NextApiRequest, NextApiResponse } from 'next';
+import { without } from 'lodash';
+import prismadb from '@/lib/prismadb';
+import serverAuth from '@/lib/serverAuth';
 
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
   try {
-    if (req.method === "POST") {
+    if (req.method === 'POST') {
       const { currentUser } = await serverAuth(req, res);
       const { movieId } = req.body;
 
@@ -19,12 +19,12 @@ export default async function handler(
       });
 
       if (!existingMovie) {
-        throw new Error("Invalid ID");
+        throw new Error('Invalid ID');
       }
 
       const user = await prismadb.user.update({
         where: {
-          email: currentUser.email || "",
+          email: currentUser.email || '',
         },
         data: {
           favoriteIds: {
@@ -36,7 +36,7 @@ export default async function handler(
       return res.status(200).json(user);
     }
 
-    if (req.method === "DELETE") {
+    if (req.method === 'DELETE') {
       const { currentUser } = await serverAuth(req, res);
 
       const { movieId } = req.body;
@@ -48,14 +48,14 @@ export default async function handler(
       });
 
       if (!existingMovie) {
-        throw new Error("Invalid ID");
+        throw new Error('Invalid ID');
       }
 
       const updatedFavoriteIds = without(currentUser.favoriteIds, movieId);
 
       const updatedUser = await prismadb.user.update({
         where: {
-          email: currentUser.email || "",
+          email: currentUser.email || '',
         },
         data: {
           favoriteIds: updatedFavoriteIds,
@@ -67,7 +67,7 @@ export default async function handler(
 
     return res.status(405).end();
   } catch (error) {
-    console.log(error);
+    // Error handling - consider implementing proper error logging
     return res.status(400).end();
   }
 }
