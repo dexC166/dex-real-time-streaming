@@ -125,6 +125,8 @@ Motivated by industry-leading streaming platform design and fueled by expertise 
 
 ---
 
+<a name="code-documentation"></a>
+
 ## 📖 Code Documentation
 
 This project features **comprehensive JSDoc comments** throughout the entire codebase, providing:
