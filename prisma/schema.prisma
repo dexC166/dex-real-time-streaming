@@ -1,69 +1,405 @@
+/**
+ * Prisma Schema for DEX Real-Time Streaming Platform
+ * 
+ * This schema defines the database structure for the Netflix-like streaming platform,
+ * optimized for MongoDB with NextAuth.js integration and streaming content management.
+ * The schema supports user authentication, movie catalog management, and personalized
+ * user experiences through favorites and watchlists.
+ * 
+ * Key architectural decisions reflected in this schema:
+ * - MongoDB Integration: Uses MongoDB for flexible, scalable data storage optimized for streaming workflows
+ * - NextAuth.js Compatibility: Includes User, Account, Session, and VerificationToken models for OAuth integration
+ * - Streaming-First Design: Movie model optimized for video metadata and thumbnail management
+ * - User-Centric Features: Supports favorites, profiles, and personalized content recommendations
+ * - ObjectId Mapping: All IDs use MongoDB ObjectId format for optimal performance and consistency
+ * 
+ * The streaming platform relies on this schema for:
+ * - User Authentication: Multi-provider auth (GitHub, Google, email/password) with secure session management
+ * - Content Management: Movie catalog with metadata, thumbnails, and streaming URLs
+ * - Personalization: User favorites, watchlists, and profile management
+ * - Scalability: MongoDB's flexible document structure supports rapid feature development
+ * 
+ * @see {@link https://www.prisma.io/docs/concepts/database-connectors/mongodb} Prisma MongoDB Connector
+ * @see {@link https://next-auth.js.org/adapters/prisma} NextAuth.js Prisma Adapter
+ * @see {@link https://www.mongodb.com/atlas} MongoDB Atlas Documentation
+ */
+
+/**
+ * Prisma Client Generator Configuration
+ * 
+ * Configures Prisma to generate a TypeScript client for database operations.
+ * This is essential for the streaming platform because:
+ * 
+ * Why prisma-client-js:
+ * - Type Safety: Generates fully typed client with intellisense for all database operations
+ * - Performance: Optimized JavaScript client with connection pooling and query optimization
+ * - Next.js Integration: Works seamlessly with Next.js API routes and server-side rendering
+ * - Development Experience: Provides excellent error messages and debugging capabilities
+ * 
+ * Streaming Platform Benefits:
+ * - API Routes: Powers all /api/* endpoints with type-safe database operations
+ * - Real-time Updates: Enables efficient data fetching for dynamic streaming content
+ * - Error Handling: Provides detailed error messages for debugging authentication and data issues
+ * - Code Generation: Automatically updates when schema changes, ensuring type consistency
+ * 
+ * @see {@link https://www.prisma.io/docs/concepts/components/prisma-client} Prisma Client Documentation
+ */
 generator client {
   provider = "prisma-client-js"
 }
 
+/**
+ * MongoDB Database Configuration
+ * 
+ * Configures the connection to MongoDB Atlas for the streaming platform's data storage.
+ * MongoDB is chosen for this streaming platform because:
+ * 
+ * Why MongoDB for streaming:
+ * - Flexible Schema: Easy to add new fields to Movie model for evolving streaming features
+ * - Document Structure: Natural fit for user profiles with varying data (OAuth vs credentials)
+ * - Scalability: Handles high read/write loads typical of streaming platforms
+ * - JSON-like Data: Seamless integration with Next.js API responses and frontend state
+ * 
+ * Streaming Platform Usage:
+ * - User Data: Stores user profiles, authentication data, and favorite movie lists
+ * - Content Catalog: Manages movie metadata, thumbnails, and streaming URLs
+ * - Session Management: Handles NextAuth.js sessions and OAuth account linking
+ * - Performance: Optimized for fast reads of movie data and user preferences
+ * 
+ * Environment Configuration:
+ * - DATABASE_URL: MongoDB Atlas connection string with authentication
+ * - Production: Uses MongoDB Atlas cloud database for scalability and reliability
+ * - Development: Can use local MongoDB or Atlas development cluster
+ * 
+ * @see {@link https://www.prisma.io/docs/concepts/database-connectors/mongodb} Prisma MongoDB Documentation
+ * @see {@link https://www.mongodb.com/atlas} MongoDB Atlas Setup
+ */
 datasource db {
   provider = "mongodb"
   url      = env("DATABASE_URL")
 }
 
+/**
+ * User Model - Core User Profile and Authentication Data
+ * 
+ * This model represents users of the streaming platform, supporting both OAuth
+ * authentication (GitHub, Google) and traditional email/password authentication.
+ * It's designed to handle the diverse authentication patterns used in modern
+ * streaming platforms while maintaining data consistency and security.
+ * 
+ * Key design decisions for the streaming platform:
+ * - Flexible Authentication: Supports both OAuth providers and credentials-based auth
+ * - Personalization Ready: Includes favoriteIds array for user-specific content recommendations
+ * - NextAuth.js Integration: Compatible with NextAuth.js PrismaAdapter for seamless OAuth
+ * - MongoDB Optimization: Uses ObjectId for efficient querying and relationship management
+ * 
+ * Streaming Platform Usage:
+ * - Authentication: Powers user login across all authentication providers
+ * - Profile Management: Stores user names, images, and profile information
+ * - Favorites System: Manages user's favorite movie lists for personalized content
+ * - Session Management: Links to Session and Account models for secure authentication
+ * 
+ * Field Explanations:
+ * - id: MongoDB ObjectId for efficient database operations and relationship mapping
+ * - name: User's display name, required for all users regardless of auth method
+ * - image: Optional profile image URL, populated by OAuth providers or user uploads
+ * - email: Unique email address, optional to support OAuth-only users
+ * - emailVerified: Timestamp for email verification, used in credentials auth flow
+ * - hashedPassword: Bcrypt-hashed password for credentials authentication only
+ * - favoriteIds: Array of Movie ObjectIds for user's favorite content
+ * - sessions/accounts: Relations to NextAuth.js session and OAuth account data
+ * 
+ * @see {@link pages/api/auth/[...nextauth].ts} NextAuth.js configuration using this model
+ * @see {@link pages/api/register.ts} User registration endpoint
+ * @see {@link lib/serverAuth.ts} Server-side authentication using this model
+ */
 model User {
+  /** MongoDB ObjectId - Primary key for efficient database operations */
   id String @id @default(auto()) @map("_id") @db.ObjectId
+  
+  /** User's display name - Required for all users, shown in UI */
   name String
+  
+  /** Optional profile image URL - Populated by OAuth providers or user uploads */
   image String?
+  
+  /** Unique email address - Optional to support OAuth-only users */
   email String? @unique
+  
+  /** Email verification timestamp - Used in credentials authentication flow */
   emailVerified DateTime?
+  
+  /** Bcrypt-hashed password - Only used for credentials authentication */
   hashedPassword String?
+  
+  /** Account creation timestamp - Used for user analytics and account management */
   createdAt DateTime @default(now())
+  
+  /** Last update timestamp - Automatically updated on any field change */
   updatedAt DateTime @updatedAt
+  
+  /** Array of favorite movie ObjectIds - Powers personalized content recommendations */
   favoriteIds String[] @db.ObjectId
+  
+  /** NextAuth.js sessions - Links to user's active authentication sessions */
   sessions Session[]
+  
+  /** OAuth accounts - Links to user's connected OAuth provider accounts */
   accounts Account[]
 }
 
+/**
+ * Account Model - OAuth Provider Account Linking
+ * 
+ * This model stores OAuth provider account information for users who authenticate
+ * through external providers like GitHub and Google. It's essential for the streaming
+ * platform's multi-provider authentication system and enables seamless account linking.
+ * 
+ * Key design decisions for the streaming platform:
+ * - OAuth Integration: Stores all necessary OAuth tokens and metadata for provider accounts
+ * - Account Linking: Allows users to link multiple OAuth providers to a single user account
+ * - Security Focus: Stores sensitive tokens with proper data types and optional fields
+ * - NextAuth.js Compatibility: Follows NextAuth.js PrismaAdapter schema requirements
+ * 
+ * Streaming Platform Usage:
+ * - Multi-Provider Auth: Supports GitHub and Google authentication for user convenience
+ * - Account Management: Enables users to link/unlink OAuth accounts from their profile
+ * - Token Management: Stores and manages OAuth tokens for API access to provider services
+ * - User Experience: Provides seamless login experience across different authentication methods
+ * 
+ * Field Explanations:
+ * - id: MongoDB ObjectId for efficient database operations
+ * - userId: Foreign key linking to the User model for account ownership
+ * - type/provider: Identifies the OAuth provider (e.g., "oauth", "github", "google")
+ * - providerAccountId: Unique identifier from the OAuth provider
+ * - refresh_token/access_token: OAuth tokens for API access (stored as strings for flexibility)
+ * - expires_at: Token expiration timestamp for automatic token refresh
+ * - token_type/scope: OAuth token metadata for proper API usage
+ * - id_token: OpenID Connect ID token for user identity verification
+ * - session_state: OAuth session state for security and CSRF protection
+ * 
+ * Security Considerations:
+ * - Tokens are stored as optional strings to handle varying OAuth provider requirements
+ * - Cascade delete ensures account data is removed when user account is deleted
+ * - Unique constraint on provider + providerAccountId prevents duplicate account linking
+ * 
+ * @see {@link pages/api/auth/[...nextauth].ts} NextAuth.js OAuth provider configuration
+ * @see {@link https://next-auth.js.org/adapters/prisma} NextAuth.js Prisma Adapter schema
+ */
 model Account {
+  /** MongoDB ObjectId - Primary key for efficient database operations */
   id String @id @default(auto()) @map("_id") @db.ObjectId
+  
+  /** Foreign key to User model - Links account to user profile */
   userId String @db.ObjectId
+  
+  /** OAuth account type - Typically "oauth" for OAuth 2.0 providers */
   type String
+  
+  /** OAuth provider name - e.g., "github", "google", "discord" */
   provider String
+  
+  /** Provider's unique account identifier - Used for account linking */
   providerAccountId String
+  
+  /** OAuth refresh token - Used to obtain new access tokens */
   refresh_token String? @db.String
+  
+  /** OAuth access token - Used for API calls to the provider */
   access_token String? @db.String
+  
+  /** Token expiration timestamp - Unix timestamp for token refresh logic */
   expires_at Int?
+  
+  /** OAuth token type - Typically "Bearer" for OAuth 2.0 */
   token_type String?
+  
+  /** OAuth scope - Permissions granted by the user to the application */
   scope String?
+  
+  /** OpenID Connect ID token - Contains user identity information */
   id_token String? @db.String
+  
+  /** OAuth session state - Used for CSRF protection and session management */
   session_state String?
 
+  /** User relationship - Links account to user profile with cascade delete */
   user User @relation(fields: [userId], references: [id], onDelete: Cascade )
 
+  /** Unique constraint - Prevents duplicate account linking for same provider */
   @@unique([provider, providerAccountId])
 }
 
+/**
+ * Session Model - User Authentication Sessions
+ * 
+ * This model manages user authentication sessions for the streaming platform,
+ * enabling secure user state management across browser sessions and device changes.
+ * It's essential for maintaining user login state and providing seamless
+ * authentication experiences.
+ * 
+ * Key design decisions for the streaming platform:
+ * - Session Security: Uses unique session tokens for secure authentication state
+ * - Automatic Expiration: Built-in session expiration for security and resource management
+ * - User Linking: Direct relationship to User model for session ownership
+ * - NextAuth.js Integration: Compatible with NextAuth.js session management
+ * 
+ * Streaming Platform Usage:
+ * - User Authentication: Maintains login state across page refreshes and browser sessions
+ * - Security: Prevents unauthorized access to user-specific content and features
+ * - Multi-Device Support: Allows users to stay logged in across different devices
+ * - Session Management: Enables secure logout and session invalidation
+ * 
+ * Field Explanations:
+ * - id: MongoDB ObjectId for efficient database operations
+ * - sessionToken: Unique session identifier used for authentication verification
+ * - userId: Foreign key linking session to the authenticated user
+ * - expires: Session expiration timestamp for automatic cleanup and security
+ * 
+ * Security Considerations:
+ * - Session tokens are unique to prevent session hijacking
+ * - Automatic expiration prevents indefinite session persistence
+ * - Cascade delete ensures sessions are cleaned up when user account is deleted
+ * - NextAuth.js handles token generation and validation securely
+ * 
+ * @see {@link pages/api/auth/[...nextauth].ts} NextAuth.js session configuration
+ * @see {@link lib/serverAuth.ts} Server-side session validation
+ * @see {@link https://next-auth.js.org/adapters/prisma} NextAuth.js Prisma Adapter
+ */
 model Session {
+  /** MongoDB ObjectId - Primary key for efficient database operations */
   id String @id @default(auto()) @map("_id") @db.ObjectId
+  
+  /** Unique session token - Used for authentication verification */
   sessionToken String @unique
+  
+  /** Foreign key to User model - Links session to authenticated user */
   userId String @db.ObjectId
+  
+  /** Session expiration timestamp - Automatic cleanup and security */
   expires DateTime
 
+  /** User relationship - Links session to user profile with cascade delete */
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
+/**
+ * VerificationToken Model - Email Verification and Password Reset
+ * 
+ * This model handles email verification tokens and password reset tokens for the
+ * streaming platform's credentials-based authentication system. It provides secure
+ * token-based verification for user account validation and password recovery.
+ * 
+ * Key design decisions for the streaming platform:
+ * - Token Security: Uses unique tokens with expiration for secure verification
+ * - Multi-Purpose: Handles both email verification and password reset scenarios
+ * - NextAuth.js Integration: Compatible with NextAuth.js verification token requirements
+ * - Automatic Cleanup: Built-in expiration prevents token accumulation and security issues
+ * 
+ * Streaming Platform Usage:
+ * - Email Verification: Validates user email addresses during account registration
+ * - Password Reset: Enables secure password recovery for forgotten credentials
+ * - Account Security: Provides additional security layer for user account management
+ * - User Onboarding: Ensures valid email addresses for important platform communications
+ * 
+ * Field Explanations:
+ * - id: MongoDB ObjectId for efficient database operations
+ * - identifier: Email address or user identifier for the verification request
+ * - token: Unique verification token used for secure verification links
+ * - expires: Token expiration timestamp for automatic cleanup and security
+ * 
+ * Security Considerations:
+ * - Tokens are unique to prevent token reuse and guessing attacks
+ * - Automatic expiration prevents indefinite token persistence
+ * - Unique constraint on identifier + token prevents duplicate verification requests
+ * - Tokens should be cryptographically secure and unpredictable
+ * 
+ * @see {@link pages/api/auth/[...nextauth].ts} NextAuth.js verification token usage
+ * @see {@link https://next-auth.js.org/adapters/prisma} NextAuth.js Prisma Adapter
+ * @see {@link https://next-auth.js.org/providers/email} NextAuth.js Email Provider
+ */
 model VerificationToken {
+  /** MongoDB ObjectId - Primary key for efficient database operations */
   id String @id @default(auto()) @map("_id") @db.ObjectId
+  
+  /** Email address or user identifier - Target of the verification request */
   identifier String
+  
+  /** Unique verification token - Used in verification links and forms */
   token String @unique
+  
+  /** Token expiration timestamp - Automatic cleanup and security */
   expires DateTime
 
+  /** Unique constraint - Prevents duplicate verification requests for same identifier */
   @@unique([identifier, token])
 }
 
+/**
+ * Movie Model - Streaming Content Catalog
+ * 
+ * This model represents the core streaming content of the platform, storing
+ * movie metadata, streaming URLs, and presentation data. It's optimized for
+ * the streaming platform's content delivery and user experience requirements.
+ * 
+ * Key design decisions for the streaming platform:
+ * - Streaming-First: Optimized for video content delivery and metadata management
+ * - User Experience: Includes all necessary data for rich content presentation
+ * - Performance: Simple structure for fast queries and efficient data loading
+ * - Scalability: Designed to handle large catalogs of streaming content
+ * 
+ * Streaming Platform Usage:
+ * - Content Catalog: Powers the main movie browsing and discovery interface
+ * - Video Streaming: Provides streaming URLs for video player integration
+ * - Content Presentation: Supplies thumbnails, descriptions, and metadata for UI
+ * - User Favorites: Referenced by User.favoriteIds for personalized content
+ * - Search and Filtering: Enables content discovery by genre, title, and other criteria
+ * 
+ * Field Explanations:
+ * - id: MongoDB ObjectId for efficient database operations and relationship mapping
+ * - title: Movie title displayed in the UI and used for search functionality
+ * - description: Movie synopsis and description for content discovery
+ * - videoUrl: Direct URL to the video file for streaming playback
+ * - thumbnailUrl: Image URL for movie poster/thumbnail display
+ * - genre: Content categorization for filtering and recommendation systems
+ * - duration: Movie length for user information and content planning
+ * 
+ * Content Management Considerations:
+ * - Video URLs should point to CDN-optimized streaming endpoints
+ * - Thumbnail URLs should be optimized for fast loading and responsive display
+ * - Genre field supports content categorization and filtering
+ * - Duration helps users make viewing decisions and plan their time
+ * 
+ * Future Enhancement Opportunities:
+ * - Additional metadata fields (release year, rating, cast, director)
+ * - Content relationships (seasons, episodes, related content)
+ * - User interaction data (views, ratings, reviews)
+ * - Content availability and licensing information
+ * 
+ * @see {@link pages/api/movies/index.ts} Movie listing API endpoint
+ * @see {@link pages/api/movies/[movieId].ts} Individual movie API endpoint
+ * @see {@link pages/api/favorites.ts} User favorites API using this model
+ * @see {@link pages/api/random.ts} Random movie selection API
+ */
 model Movie {
- id String @id @default(auto()) @map("_id") @db.ObjectId
- title String
- description String
- videoUrl String
- thumbnailUrl String
- genre String
- duration String 
+  /** MongoDB ObjectId - Primary key for efficient database operations */
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+  
+  /** Movie title - Displayed in UI and used for search functionality */
+  title String
+  
+  /** Movie description - Synopsis and content information for discovery */
+  description String
+  
+  /** Video streaming URL - Direct link to video file for playback */
+  videoUrl String
+  
+  /** Thumbnail image URL - Movie poster/thumbnail for UI display */
+  thumbnailUrl String
+  
+  /** Content genre - Used for categorization and filtering */
+  genre String
+  
+  /** Movie duration - Length information for user planning */
+  duration String 
 }

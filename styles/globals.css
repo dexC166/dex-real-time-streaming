@@ -1,15 +1,146 @@
+/**
+ * Global CSS Styles for DEX Real-Time Streaming Platform
+ * 
+ * This file defines the foundational styling for the entire streaming platform,
+ * establishing the dark theme aesthetic, full-height layout strategy, and
+ * Tailwind CSS integration. It serves as the visual foundation that creates
+ * a consistent, Netflix-like user experience across all pages and components.
+ * 
+ * Key architectural decisions for the streaming platform:
+ * - Dark Theme Foundation: Establishes zinc-900 background for Netflix-like aesthetic
+ * - Full-Height Layout: Ensures consistent full-screen experience across all pages
+ * - Tailwind Integration: Imports all Tailwind CSS utilities and components
+ * - Overflow Management: Prevents horizontal scrolling for clean mobile experience
+ * - Next.js Integration: Properly styles the #__next root element for SSR compatibility
+ * 
+ * The streaming platform relies on this file for:
+ * - Visual Consistency: Establishes dark theme across all pages and components
+ * - Layout Foundation: Provides full-height layout for immersive streaming experience
+ * - Tailwind CSS: Enables utility-first styling throughout the platform
+ * - Mobile Experience: Prevents horizontal overflow for clean mobile browsing
+ * - Netflix-Style Design: Creates familiar dark theme for streaming platform credibility
+ * 
+ * @see {@link pages/_app.tsx} Next.js App component that imports this file
+ * @see {@link tailwind.config.js} Tailwind CSS configuration
+ * @see {@link postcss.config.js} PostCSS configuration for Tailwind processing
+ * @see {@link pages/browse.tsx} Main browsing page using global styles
+ * @see {@link pages/auth.tsx} Authentication page using global styles
+ * @see {@link pages/watch/[movieId].tsx} Video streaming page using global styles
+ */
+
+/**
+ * Tailwind CSS Base Layer
+ * 
+ * Imports Tailwind's base styles, which include CSS reset, normalize, and
+ * foundational element styles. This ensures consistent cross-browser
+ * rendering and provides the foundation for all Tailwind utilities.
+ * 
+ * Why this is essential for the streaming platform:
+ * - Cross-Browser Consistency: Ensures consistent rendering across all browsers
+ * - CSS Reset: Removes default browser styles for predictable styling
+ * - Foundation: Provides base styles for all HTML elements
+ * - Performance: Optimized CSS that works with Tailwind's utility system
+ */
 @tailwind base;
+
+/**
+ * Tailwind CSS Components Layer
+ * 
+ * Imports Tailwind's component layer, which includes pre-built component
+ * styles and custom component definitions. This enables component-based
+ * styling patterns throughout the streaming platform.
+ * 
+ * Why this is important for the streaming platform:
+ * - Component Styling: Enables reusable component styles across the platform
+ * - Design System: Provides consistent component patterns for UI elements
+ * - Customization: Allows platform-specific component styling
+ * - Maintainability: Centralizes component styling for easier updates
+ */
 @tailwind components;
+
+/**
+ * Tailwind CSS Utilities Layer
+ * 
+ * Imports Tailwind's utility classes, which provide the core utility-first
+ * styling system. This enables rapid development and consistent styling
+ * patterns throughout the streaming platform.
+ * 
+ * Why this is crucial for the streaming platform:
+ * - Utility-First: Enables rapid styling with utility classes
+ * - Consistency: Ensures consistent spacing, colors, and typography
+ * - Responsive Design: Provides responsive utilities for all screen sizes
+ * - Performance: Optimized CSS with purging for minimal bundle size
+ */
 @tailwind utilities;
 
+/**
+ * Global Body Styling
+ * 
+ * Establishes the foundational dark theme and layout for the entire streaming
+ * platform. This creates the Netflix-like dark aesthetic and ensures proper
+ * full-height layout across all pages and components.
+ * 
+ * Why this styling is essential for the streaming platform:
+ * - Dark Theme Foundation: Creates the signature dark aesthetic of streaming platforms
+ * - Full-Height Layout: Ensures immersive full-screen experience
+ * - Mobile Optimization: Prevents horizontal scrolling for clean mobile experience
+ * - Visual Consistency: Establishes consistent background across all pages
+ * 
+ * Styling Decisions:
+ * - bg-zinc-900: Dark neutral background for Netflix-like aesthetic
+ * - h-full: Full height for immersive streaming experience
+ * - overflow-x-hidden: Prevents horizontal scrolling for clean mobile experience
+ * 
+ * Platform Integration:
+ * - Browse Page: Dark background for movie catalog and content discovery
+ * - Auth Page: Consistent dark theme for authentication forms
+ * - Watch Page: Dark background for immersive video streaming
+ * - All Components: Consistent dark theme foundation
+ */
 body {
   @apply bg-zinc-900 h-full overflow-x-hidden;
 }
 
+/**
+ * Next.js Root Element Styling
+ * 
+ * Ensures the Next.js root element (#__next) takes full height for proper
+ * layout rendering. This is essential for SSR compatibility and consistent
+ * layout behavior across all pages in the streaming platform.
+ * 
+ * Why this is crucial for the streaming platform:
+ * - SSR Compatibility: Ensures proper layout rendering during server-side rendering
+ * - Full-Height Layout: Maintains full-height layout for immersive experience
+ * - Next.js Integration: Properly styles the Next.js root element
+ * - Layout Consistency: Ensures consistent layout behavior across all pages
+ * 
+ * Technical Details:
+ * - #__next: Next.js automatically creates this root element for all pages
+ * - h-full: Ensures the root element takes full height
+ * - SSR Support: Critical for proper hydration and layout consistency
+ */
 #__next {
   @apply h-full;
 }
 
+/**
+ * HTML Root Element Styling
+ * 
+ * Ensures the HTML root element takes full height for proper viewport
+ * utilization. This is essential for creating a true full-screen experience
+ * and ensuring consistent layout behavior across all devices and browsers.
+ * 
+ * Why this is essential for the streaming platform:
+ * - Full-Screen Experience: Enables true full-screen layout for immersive streaming
+ * - Viewport Utilization: Maximizes screen real estate for content display
+ * - Cross-Device Consistency: Ensures consistent layout across all devices
+ * - Browser Compatibility: Works consistently across all modern browsers
+ * 
+ * Technical Details:
+ * - html: Root HTML element that contains the entire document
+ * - h-full: Ensures the HTML element takes full height
+ * - Foundation: Required for proper full-height layout implementation
+ */
 html {
   @apply h-full;
 }

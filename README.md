@@ -23,6 +23,8 @@ An original, full-featured and responsive streaming platform inspired by Netflix
 
 📚 [docs](#docs)
 
+📖 [Code Documentation](#code-documentation)
+
 🚀 [Quick Start](#quick-start)
 
 🧩 [Key Features](#key-features)
@@ -123,6 +125,42 @@ Motivated by industry-leading streaming platform design and fueled by expertise 
 
 ---
 
+## 📖 Code Documentation
+
+This project features **comprehensive JSDoc comments** throughout the entire codebase, providing:
+
+### 🎓 Mentoring Tone Documentation
+
+- **Educational Approach**: Comments written as if mentoring a junior developer
+- **"Why" Focus**: Explains the reasoning behind architectural decisions, not just the "what"
+- **Context-Aware**: References actual usage patterns and cross-component relationships
+- **Production-Ready Standards**: Professional-grade documentation suitable for team collaboration
+
+### 📋 Documentation Coverage
+
+- **Components**: All React components with detailed prop interfaces and usage examples
+- **Hooks**: Custom hooks with state management patterns and integration details
+- **API Routes**: Backend endpoints with authentication, validation, and error handling
+- **Configuration Files**: Tailwind, PostCSS, Prisma, and Next.js configurations
+- **Utility Functions**: Database connections, authentication middleware, and data fetching
+- **Global Styles**: CSS architecture and design system foundations
+
+### 🔗 Cross-Referenced Documentation
+
+- **Component Relationships**: Links between related components and their interactions
+- **Data Flow**: Clear documentation of how data flows through the application
+- **Integration Points**: How different parts of the system work together
+- **Usage Examples**: Real-world examples showing how to use each component and function
+
+### 🚀 Benefits for Developers
+
+- **Faster Onboarding**: New developers can understand the codebase quickly
+- **Maintainability**: Clear documentation makes future updates easier
+- **Learning Resource**: Excellent for understanding modern React/Next.js patterns
+- **Code Quality**: Well-documented code encourages better practices
+
+---
+
 <a name="quick-start"></a>
 
 ## 🚀 Quick Start
@@ -182,6 +220,7 @@ npm run dev
 | 📦 **Pop-up Modals**      | In-depth movie details one click away                                                         |
 | ▶️ **Video Playback**     | High-performance, full-screen movie watching                                                  |
 | 🚧 **Protected Routes**   | Access control throughout the app                                                             |
+| 📚 **Comprehensive Docs** | Extensive JSDoc comments with mentoring tone explaining the "why" behind code decisions       |
 
 ---
 
@@ -243,8 +282,9 @@ I dove deeply into:
 - **Responsive, modern streaming UI**: Tailwind CSS best practices
 - **Database Integration**: Prisma ORM with MongoDB for scalable data management
 - **HTTP Client Patterns**: Axios for reliable API communication
+- **Code Documentation**: Comprehensive JSDoc comments with mentoring tone and context-aware explanations
 
-This project isn't a straight copy, it's an **evolution**! Inspiration came from Antonio Erdeljac's ("codewithantonio") YouTube content, whose lessons turbocharged my skills and confidence. Fully understanding every file now, and reflects my own touch and problem solving.
+This project isn't a straight copy, it's an **evolution**! Inspiration came from Antonio Erdeljac's ("codewithantonio") YouTube content, whose lessons turbocharged my skills and confidence. Through extensive documentation work, I've gained deep understanding of every file, component, and architectural decision, making this codebase a true reflection of my growth as a developer.
 
 ---
 

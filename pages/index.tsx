@@ -1,11 +1,111 @@
+/**
+ * Landing Page for DEX Real-Time Streaming Platform
+ *
+ * This is the public-facing landing page that serves as the entry point for
+ * new users to discover and join the streaming platform. It implements a
+ * Netflix-like design with authentication-based routing, user acquisition
+ * features, and comprehensive platform showcase sections.
+ *
+ * Key architectural decisions for the streaming platform:
+ * - Authentication-Based Routing: Redirects authenticated users to browse page
+ * - User Acquisition Focus: Optimized for converting visitors to registered users
+ * - Netflix-Style Design: Familiar UI patterns for streaming platform credibility
+ * - Progressive Enhancement: Works across all devices with responsive design
+ *
+ * The streaming platform relies on this page for:
+ * - User Onboarding: First impression and conversion funnel for new users
+ * - Authentication Flow: Seamless transition from landing to authentication
+ * - Platform Showcase: Demonstrates streaming capabilities and features
+ * - User Experience: Provides familiar Netflix-like interface for credibility
+ *
+ * @see {@link pages/auth.tsx} Authentication page with login/register forms
+ * @see {@link pages/browse.tsx} Main browsing page for authenticated users
+ * @see {@link pages/profiles.tsx} User profile management page
+ * @see {@link pages/api/auth/[...nextauth].ts} NextAuth.js authentication configuration
+ * @see {@link pages/api/register.ts} User registration API endpoint
+ */
+
 import { getSession } from 'next-auth/react';
 import { GetServerSidePropsContext } from 'next';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
 import { FaAngleRight } from 'react-icons/fa';
 
+/**
+ * Server-Side Props for Authentication-Based Routing
+ *
+ * This function handles server-side authentication checking and routing logic
+ * for the landing page. It ensures that authenticated users are automatically
+ * redirected to the main browsing experience while unauthenticated users see
+ * the landing page for user acquisition.
+ *
+ * Why this server-side approach is essential for the streaming platform:
+ * - User Experience: Prevents authenticated users from seeing landing page unnecessarily
+ * - Performance: Server-side redirects are faster than client-side routing
+ * - SEO: Proper HTTP redirects for search engine optimization
+ * - Security: Prevents client-side authentication bypass attempts
+ *
+ * Authentication Flow:
+ * 1. Checks if user has valid session using NextAuth.js getSession
+ * 2. If authenticated: Redirects to /browse for main streaming experience
+ * 3. If not authenticated: Renders landing page for user acquisition
+ * 4. Uses permanent: false for temporary redirects (better for user experience)
+ *
+ * Streaming Platform Integration:
+ * - Browse Page: Main destination for authenticated users with full streaming access
+ * - Landing Page: User acquisition and platform showcase for new visitors
+ * - Authentication: Seamless integration with NextAuth.js session management
+ * - User Journey: Optimized flow from discovery to registration to streaming
+ *
+ * @param context - Next.js server-side props context with request/response data
+ * @returns Promise<{ props: {} } | { redirect: { destination: string; permanent: boolean } }>
+ *
+ * @example
+ * ```typescript
+ * // Authenticated user flow
+ * // User visits / → getServerSideProps checks session → redirects to /browse
+ *
+ * // Unauthenticated user flow
+ * // User visits / → getServerSideProps checks session → renders landing page
+ * ```
+ *
+ * @see {@link pages/browse.tsx} Main browsing page for authenticated users
+ * @see {@link pages/auth.tsx} Authentication page for login/register
+ * @see {@link pages/api/auth/[...nextauth].ts} NextAuth.js configuration
+ */
 export async function getServerSideProps(context: GetServerSidePropsContext) {
+  /**
+   * Session Validation
+   *
+   * Uses NextAuth.js getSession to check if the user has a valid authentication
+   * session. This is the core logic that determines whether to show the landing
+   * page or redirect to the main streaming experience.
+   *
+   * Why this check is crucial for the streaming platform:
+   * - User Experience: Prevents authenticated users from seeing marketing content
+   * - Conversion: Ensures new users see the landing page for user acquisition
+   * - Performance: Server-side checks are faster than client-side authentication
+   * - Security: Validates authentication state before rendering content
+   */
   const session = await getSession(context);
+
+  /**
+   * Authenticated User Redirect
+   *
+   * If the user has a valid session, redirects them to the main browsing page
+   * where they can access the full streaming platform experience. This ensures
+   * authenticated users don't see the landing page unnecessarily.
+   *
+   * Why redirect to /browse for authenticated users:
+   * - User Experience: Takes users directly to the main streaming interface
+   * - Conversion: Prevents authenticated users from seeing marketing content
+   * - Performance: Avoids unnecessary landing page rendering for logged-in users
+   * - Business Logic: Authenticated users should access the full platform
+   *
+   * Redirect Configuration:
+   * - destination: '/browse' - Main streaming page with movie catalog
+   * - permanent: false - Temporary redirect for better user experience
+   */
   if (session) {
     return {
       redirect: {
@@ -14,13 +114,120 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
       },
     };
   }
+
+  /**
+   * Unauthenticated User Landing Page
+   *
+   * Returns empty props to render the landing page for unauthenticated users.
+   * This enables the user acquisition flow and platform showcase for new visitors.
+   *
+   * Why empty props for unauthenticated users:
+   * - User Acquisition: Shows landing page to convert visitors to users
+   * - Platform Showcase: Demonstrates streaming capabilities and features
+   * - Marketing: Provides compelling content to encourage registration
+   * - Conversion: Optimizes the user journey from discovery to registration
+   */
   return { props: {} };
 }
 
+/**
+ * Landing Page Component
+ *
+ * This component renders the public-facing landing page for the streaming platform,
+ * featuring a Netflix-like design with hero section, platform showcase, and user
+ * acquisition features. It's optimized for converting visitors into registered users.
+ *
+ * Why this component is essential for the streaming platform:
+ * - User Acquisition: Primary conversion funnel for new user registration
+ * - Platform Showcase: Demonstrates streaming capabilities and features
+ * - Brand Experience: Provides professional, Netflix-like interface for credibility
+ * - User Journey: Guides visitors from discovery to authentication to streaming
+ *
+ * Component Features:
+ * - Hero Section: Compelling call-to-action with email capture
+ * - Platform Showcase: Demonstrates streaming capabilities across devices
+ * - Responsive Design: Optimized for all screen sizes and devices
+ * - Authentication Integration: Seamless flow to login/register pages
+ *
+ * User Experience Flow:
+ * 1. Visitor lands on page and sees compelling hero section
+ * 2. User enters email and clicks "Get Started" for registration
+ * 3. Redirects to /auth?variant=register with pre-filled email
+ * 4. User completes registration and gains access to streaming platform
+ *
+ * @returns JSX.Element - The complete landing page with hero and showcase sections
+ *
+ * @example
+ * ```typescript
+ * // User journey example
+ * // 1. User visits / → sees landing page
+ * // 2. User enters email → clicks "Get Started"
+ * // 3. Redirects to /auth?variant=register&email=user@example.com
+ * // 4. User completes registration → gains access to /browse
+ * ```
+ *
+ * @see {@link pages/auth.tsx} Authentication page with pre-filled email
+ * @see {@link pages/browse.tsx} Main streaming page after authentication
+ * @see {@link pages/profiles.tsx} User profile management
+ */
 export default function LandingPage() {
+  /**
+   * Email State Management
+   *
+   * Manages the email input state for the user acquisition form. This enables
+   * pre-filling the email in the authentication page for better user experience.
+   *
+   * Why email state is important for the streaming platform:
+   * - User Experience: Pre-fills email in registration form for convenience
+   * - Conversion: Reduces friction in the registration process
+   * - Data Collection: Captures user email for marketing and communication
+   * - Authentication: Enables seamless transition to registration flow
+   */
   const [email, setEmail] = useState('');
+
+  /**
+   * Router for Navigation
+   *
+   * Next.js router instance for programmatic navigation to authentication pages.
+   * This enables seamless transitions from landing page to registration/login.
+   *
+   * Why router is essential for the streaming platform:
+   * - Navigation: Enables programmatic routing to authentication pages
+   * - User Experience: Provides smooth transitions between pages
+   * - State Management: Allows passing data between pages via URL parameters
+   * - Authentication Flow: Integrates with the platform's authentication system
+   */
   const router = useRouter();
 
+  /**
+   * Get Started Handler
+   *
+   * Handles the "Get Started" button click, redirecting users to the registration
+   * page with their email pre-filled. This creates a seamless user acquisition flow
+   * from landing page to authentication.
+   *
+   * Why this function is crucial for the streaming platform:
+   * - User Acquisition: Converts landing page visitors to registration attempts
+   * - User Experience: Pre-fills email to reduce registration friction
+   * - Conversion: Optimizes the user journey from discovery to registration
+   * - Data Flow: Passes user input to the authentication system
+   *
+   * Function Behavior:
+   * 1. Encodes the email input for safe URL parameter passing
+   * 2. Navigates to /auth?variant=register with email parameter
+   * 3. Enables pre-filling of email in the registration form
+   * 4. Provides smooth transition from landing to authentication
+   *
+   * @example
+   * ```typescript
+   * // User enters "user@example.com" and clicks "Get Started"
+   * // handleGetStarted() redirects to:
+   * // /auth?variant=register&email=user%40example.com
+   * ```
+   *
+   * @see {@link pages/auth.tsx} Authentication page that receives the email parameter
+   * @see {@link pages/api/register.ts} Registration API that processes the email
+   */
   const handleGetStarted = () => {
     router.push(`/auth?variant=register&email=${encodeURIComponent(email)}`);
   };
