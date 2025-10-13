@@ -214,7 +214,7 @@ const Profiles = () => {
         <div className="flex items-center justify-center gap-8 mt-10">
           <div
             onClick={() => {
-              router.push('/');
+              router.push('/browse');
             }}
           >
             <div className="group flex-row w-44 mx-auto">

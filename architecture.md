@@ -32,12 +32,71 @@ Dex-Real-Time-Streaming is built from the ground up to be robust, maintainable, 
 
 ### 🌿 System Overview
 
-## <img src="./public/images/diagrams/architecture-overview.png"  alt="User architecture Diagram" width="1500"/>
+```mermaid
+graph TB
+    subgraph "Client Layer"
+        Browser[Browser/Client]
+        React[React Components]
+        Hooks[Custom Hooks<br/>SWR + Zustand]
+    end
 
-**Other flows:**
+    subgraph "Next.js Application"
+        Pages[Pages<br/>index.tsx, auth.tsx<br/>browse.tsx, profiles.tsx]
+        Components[UI Components<br/>Navbar, Billboard<br/>MovieCard, InfoModal]
+        API[API Routes<br/>/api/auth, /api/movies<br/>/api/favorites, /api/current]
+    end
 
-- Vercel (CI/CD) wraps/builds/hosts Next.js
-- Environment variables (secrets) injected everywhere needed
+    subgraph "Authentication Layer"
+        NextAuth[NextAuth.js]
+        Providers[Auth Providers<br/>GitHub OAuth<br/>Google OAuth<br/>Credentials]
+        JWT[JWT Sessions]
+    end
+
+    subgraph "Data Layer"
+        Prisma[Prisma ORM]
+        MongoDB[(MongoDB Atlas)]
+    end
+
+    subgraph "External Services"
+        Vercel[Vercel<br/>Hosting & CI/CD]
+        CDN[CDN<br/>Static Assets & Videos]
+    end
+
+    Browser --> Pages
+    Pages --> Components
+    Components --> Hooks
+    Hooks --> API
+    Pages --> React
+
+    API --> NextAuth
+    API --> Prisma
+    NextAuth --> Providers
+    NextAuth --> JWT
+    NextAuth --> Prisma
+
+    Prisma --> MongoDB
+
+    Vercel -.deploys.-> Pages
+    Vercel -.deploys.-> API
+    CDN -.serves.-> Components
+
+    MongoDB -.stores.-> UserData[User Profiles<br/>Favorites<br/>Sessions]
+    MongoDB -.stores.-> ContentData[Movies<br/>Metadata<br/>URLs]
+
+    style Browser fill:#e3f2fd
+    style Pages fill:#fff3e0
+    style API fill:#f3e5f5
+    style NextAuth fill:#e8f5e9
+    style Prisma fill:#fce4ec
+    style MongoDB fill:#fff9c4
+    style Vercel fill:#e0f2f1
+```
+
+**Additional Infrastructure:**
+
+- **Vercel (CI/CD)**: Wraps, builds, and hosts the Next.js application with serverless functions
+- **Environment Variables**: Secrets injected securely at build and runtime
+- **Static Assets**: Served via CDN for optimal performance
 
 ---
 
@@ -47,8 +106,7 @@ Dex-Real-Time-Streaming is built from the ground up to be robust, maintainable, 
 - **Authentication & Identity**: NextAuth.js is configured for multi-provider auth (GitHub, Google, email/password) and hardened with JWTs and secrets. Sessions are transparent and secure, with custom logic layered in where needed.
 - **Database / ORM**: MongoDB (via Prisma) is used for flexible, scalable data storage, chosen for its compatibility with streaming workflows (denormalized user data, fast reads/writes).
 - **State Management**: The app uses SWR for efficient, resilient server-state fetching and Zustand for minimal, local UI state (e.g., modals, menu visibility).
-- **Forms**: All forms leverage React Hook Form for minimal re-renders, built-in validation, and extensibility.
-- **Notifications**: Instant UI feedback (success/error) is delivered through react-hot-toast, to keep users informed without interruption.
+- **Forms**: All forms use React's built-in state management with useState hooks for controlled inputs, providing simplicity and direct control over form data.
 
 ---
 
@@ -71,7 +129,7 @@ This is not just a clone, nor is it a loose assembly of tutorials. Every layer i
 
 I understand the architecture end-to-end, and chose each tool or technique specifically for:
 
-- Real-time feedback (SWR, Zustand, toasts)
+- Real-time feedback (SWR for data fetching, Zustand for UI state)
 - Security and privacy (NextAuth with JWT, secret management)
 - Speed to market and flexibility (Next.js, Tailwind, Prisma on MongoDB)
 - Long-term maintainability (strong typing, modular file structure, API abstraction)
