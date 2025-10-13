@@ -83,13 +83,13 @@ graph TB
     MongoDB -.stores.-> UserData[User Profiles<br/>Favorites<br/>Sessions]
     MongoDB -.stores.-> ContentData[Movies<br/>Metadata<br/>URLs]
 
-    style Browser fill:#e3f2fd
-    style Pages fill:#fff3e0
-    style API fill:#f3e5f5
-    style NextAuth fill:#e8f5e9
-    style Prisma fill:#fce4ec
-    style MongoDB fill:#fff9c4
-    style Vercel fill:#e0f2f1
+    style Browser fill:#2563eb,color:#ffffff
+    style Pages fill:#dc2626,color:#ffffff
+    style API fill:#7c3aed,color:#ffffff
+    style NextAuth fill:#059669,color:#ffffff
+    style Prisma fill:#ea580c,color:#ffffff
+    style MongoDB fill:#ca8a04,color:#ffffff
+    style Vercel fill:#0891b2,color:#ffffff
 ```
 
 **Additional Infrastructure:**

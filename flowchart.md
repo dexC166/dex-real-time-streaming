@@ -58,11 +58,11 @@ graph TD
 
     Y --> A
 
-    style A fill:#e1f5fe
-    style D fill:#c8e6c9
-    style F fill:#fff9c4
-    style S fill:#f8bbd0
-    style R fill:#e1bee7
+    style A fill:#2563eb,color:#ffffff
+    style D fill:#059669,color:#ffffff
+    style F fill:#ca8a04,color:#ffffff
+    style S fill:#dc2626,color:#ffffff
+    style R fill:#7c3aed,color:#ffffff
 ```
 
 ---
