@@ -46,27 +46,16 @@ An original, full-featured and responsive streaming platform inspired by Netflix
 ## <a name="project-highlights">✨ Project Highlights</a>
 
 - **`Built from Scratch`**: 100% coded from the ground up to master full-stack streaming with the guide of "codewithantonio."
-
 - **`Modern Full-Stack`**: Next.js 13 (Pages Router), React 18, TypeScript, and Node.js for enterprise-level streaming.
-
 - **`Styling`**: Tailwind CSS for pixel-perfect, responsive Netflix-inspired UIs optimized for all screen sizes.
-
 - **`Global State`**: SWR for server data + Zustand for client state delivering lightning-fast real-time updates.
-
 - **`Security`**: NextAuth.js multi-provider auth with bcrypt password hashing and JWT session management.
-
 - **`DB Integration`**: MongoDB Atlas with Prisma ORM for scalable, flexible streaming content management.
-
 - **`DX`**: Comprehensive error handling across frontend and backend plus production-grade TypeScript for real-world readiness.
-
 - **`Front-to-Back Ownership`**: Every line written was part of my step-by-step growth from auth to video streaming.
-
 - **`Beyond Tutorial Learning`**: Started with codewithantonio's guidance but evolved through extensive documentation work and deep customization.
-
 - **`📚 Production-Ready Documentation`**: Comprehensive JSDoc comments throughout entire codebase with mentoring tone explaining the "why" behind code decisions.
-
 - **`🎓 Educational Codebase`**: Context-aware documentation serving as learning resource for understanding modern full-stack streaming development patterns.
-
 - **`Deployment Ready`**: Hosted on Vercel with automatic CI/CD, serverless architecture, and MongoDB Atlas for global scalability.
 
 ---
@@ -319,8 +308,8 @@ _(Any platform supporting Next.js 13.5 works; Vercel simply makes it seamless.)_
 
 ## <a name="license">📜 License</a>
 
-All code and design proudly created and maintained by **Dex**.  
-© 2025 Dex. All rights reserved.
+All code and design proudly created and maintained by **Dayle Cortes**.  
+© 2025 Dayle Cortes. All rights reserved.
 
 ---
 
