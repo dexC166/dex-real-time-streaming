@@ -17,6 +17,8 @@ An original, full-featured and responsive streaming platform inspired by Netflix
 
 ## 📑 Table of Contents
 
+✨ [Project Highlights](#project-highlights)
+
 📌 [About This Project](#about-this-project)
 
 🛠️ [Tech Stack](#tech-stack)
@@ -41,18 +43,42 @@ An original, full-featured and responsive streaming platform inspired by Netflix
 
 ---
 
-<a name="about-this-project"></a>
+## <a name="project-highlights">✨ Project Highlights</a>
 
-## 📌 About This Project
+- **`Built from Scratch`**: 100% coded from the ground up to master full-stack streaming with the guide of "codewithantonio."
+
+- **`Modern Full-Stack`**: Next.js 13 (Pages Router), React 18, TypeScript, and Node.js for enterprise-level streaming.
+
+- **`Styling`**: Tailwind CSS for pixel-perfect, responsive Netflix-inspired UIs optimized for all screen sizes.
+
+- **`Global State`**: SWR for server data + Zustand for client state delivering lightning-fast real-time updates.
+
+- **`Security`**: NextAuth.js multi-provider auth with bcrypt password hashing and JWT session management.
+
+- **`DB Integration`**: MongoDB Atlas with Prisma ORM for scalable, flexible streaming content management.
+
+- **`DX`**: Comprehensive error handling across frontend and backend plus production-grade TypeScript for real-world readiness.
+
+- **`Front-to-Back Ownership`**: Every line written was part of my step-by-step growth from auth to video streaming.
+
+- **`Beyond Tutorial Learning`**: Started with codewithantonio's guidance but evolved through extensive documentation work and deep customization.
+
+- **`📚 Production-Ready Documentation`**: Comprehensive JSDoc comments throughout entire codebase with mentoring tone explaining the "why" behind code decisions.
+
+- **`🎓 Educational Codebase`**: Context-aware documentation serving as learning resource for understanding modern full-stack streaming development patterns.
+
+- **`Deployment Ready`**: Hosted on Vercel with automatic CI/CD, serverless architecture, and MongoDB Atlas for global scalability.
+
+---
+
+## <a name="about-this-project">📌 About This Project</a>
 
 **Dex-Real-Time-Streaming** is my own comprehensive streaming app, featuring modern movie browsing, secure user authentication, intuitive UI, and personalized features.  
 Motivated by industry-leading streaming platform design and fueled by expertise gained through Antonio Erdeljac ("codewithantonio") YouTube tutorials, this project is a testament to my growth as a full-stack JavaScript/TypeScript developer. Every feature and visual flourish is a result of hands-on learning and intentional customization.
 
 ---
 
-<a name="tech-stack"></a>
-
-## 🛠️ Tech Stack
+## <a name="tech-stack">🛠️ Tech Stack</a>
 
 | Layer / Purpose      | Technology                                          | Why                                                         |
 | -------------------- | --------------------------------------------------- | ----------------------------------------------------------- |
@@ -116,18 +142,14 @@ Motivated by industry-leading streaming platform design and fueled by expertise 
 
 ---
 
-<a name="docs"></a>
-
-## 📚 Docs
+## <a name="docs">📚 Docs</a>
 
 - 🛠️ [Architecture Overview](./architecture.md)
 - 🔄 [User Flow Diagram](./flowchart.md)
 
 ---
 
-<a name="code-documentation"></a>
-
-## 📖 Code Documentation
+## <a name="code-documentation">📖 Code Documentation</a>
 
 This project features **comprehensive JSDoc comments** throughout the entire codebase, providing:
 
@@ -163,9 +185,7 @@ This project features **comprehensive JSDoc comments** throughout the entire cod
 
 ---
 
-<a name="quick-start"></a>
-
-## 🚀 Quick Start
+## <a name="quick-start">🚀 Quick Start</a>
 
 ### 1. Requirements
 
@@ -208,9 +228,7 @@ npm run dev
 
 ---
 
-<a name="key-features"></a>
-
-## 🧩 Key Features
+## <a name="key-features">🧩 Key Features</a>
 
 | Feature                   | Purpose                                                                                       |
 | ------------------------- | --------------------------------------------------------------------------------------------- |
@@ -226,9 +244,7 @@ npm run dev
 
 ---
 
-<a name="folder-structures"></a>
-
-## 🗂️ Folder Structure
+## <a name="folder-structures">🗂️ Folder Structure</a>
 
 ```
 components/           # Reusable UI building blocks
@@ -271,9 +287,7 @@ README.md             # Project overview and usage guide (You are here!)
 
 ---
 
-<a name="my-learning-journey"></a>
-
-## 📖 My Learning Journey
+## <a name="my-learning-journey">📖 My Learning Journey</a>
 
 I dove deeply into:
 
@@ -290,9 +304,7 @@ This project isn't a straight copy, it's an **evolution**! Inspiration came from
 
 ---
 
-<a name="deployment"></a>
-
-## 🚀 Deployment
+## <a name="deployment">🚀 Deployment</a>
 
 **Deployed & production-ready via Vercel:**
 
@@ -305,18 +317,14 @@ _(Any platform supporting Next.js 13.5 works; Vercel simply makes it seamless.)_
 
 ---
 
-<a name="license"></a>
-
-## 📜 License
+## <a name="license">📜 License</a>
 
 All code and design proudly created and maintained by **Dex**.  
 © 2025 Dex. All rights reserved.
 
 ---
 
-<a name="acknowledgements"></a>
-
-## 🙏 Acknowledgments
+## <a name="acknowledgements">🙏 Acknowledgments</a>
 
 Special thanks to **Antonio Erdeljac**, your real-world tutorials and code galore have been a phenomenal resource and inspiration. Every lesson built my confidence to innovate and expand.
 
@@ -325,9 +333,7 @@ If you have questions, improvements, or want to discuss streaming development, f
 
 ---
 
-<a name="note"></a>
-
-## 📌 Note
+## <a name="note">📌 Note</a>
 
 This app was originally built by following @codewithantonio's YouTube tutorial for learning and inspiration.  
 The project was developed entirely in my local IDE (outside of GitHub) without initializing git, and I've reconstructed the commit history solely to reflect a realistic development flow and demonstrate my understanding of fullstack architecture and recent modifications, not as a record of the actual chronological build.
